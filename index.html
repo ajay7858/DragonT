@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Tiger Game</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #1a1a2e;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            flex-direction: column;
+        }
+
+        .display-area {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff006e;
+            margin-bottom: 20px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .loading {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff006e, #8338ec);
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #8338ec, #ff006e);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="display-area" id="display-area">Click "Play" to start</div>
+    <button class="btn" onclick="showResult()">Play The Game</button>
+
+    <script>
+        function showResult() {
+            const displayArea = document.getElementById("display-area");
+            displayArea.textContent = "Loading...";  // Show loading animation
+            displayArea.classList.add("loading");
+
+            setTimeout(() => {
+                displayArea.classList.remove("loading");
+                const outcomes = ["Dragon Tiger", "Dragon Tiger 2"];
+                const randomOutcome = outcomes[Math.floor(Math.random() * outcomes.length)];
+                displayArea.textContent = randomOutcome;  // Show result
+
+                // Automatically remove the result after 10 seconds
+                setTimeout(() => {
+                    displayArea.textContent = "Click \"Play\" to start";
+                }, 10000);
+
+            }, 3000); // 3-second delay before showing result
+        }
+    </script>
+</body>
+</html>
